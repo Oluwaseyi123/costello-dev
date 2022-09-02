@@ -2,7 +2,7 @@
  <div class="condition group">
   <mat-form-field appearance="fill">
    <mat-label>Condition</mat-label>
-   <input matInput placeholder="Condition">
+   <input matInput  name="condition" type="text" [(ngModel)]="condition" placeholder="Condition" (input)="applySearchFilter($event)">
  </mat-form-field>
  </div>
 
