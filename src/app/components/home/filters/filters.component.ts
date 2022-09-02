@@ -8,7 +8,7 @@ import { CtgovApiService } from 'src/app/services/ctgov-api.service';
 })
 export class FiltersComponent implements OnInit {
   numTrials = 0;
-  studyFields
+  trials
 
   constructor(
     private ctgovService: CtgovApiService
@@ -16,14 +16,21 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ctgovService.loadTrialData();  
-    this.getTrialData()
+     this.getTrialData()
+     this.getStudyFields()
   }
 
   getTrialData() {
-    this.ctgovService.numTrials$.subscribe(numTrials => {
-      console.log(numTrials)
+    this.ctgovService.numTrials$.subscribe((numTrials) => {
       this.numTrials = numTrials;
       
+    });
+  }
+
+  getStudyFields() {
+    this.ctgovService.trials$.subscribe((trials) => {
+      console.log(trials)
+      this.trials = trials;
     });
   }
 
