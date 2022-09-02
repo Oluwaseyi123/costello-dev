@@ -66,7 +66,10 @@ export class FiltersComponent implements OnInit {
           this.trials = this.trials
         }
         else {
-         console.log(this.trials)
+         this.trials.map((trial) => {
+          console.log(trial.Condition)
+          this.trials = trial.Condition.filter((c) => c.toLowerCase().includes(filterValueLower))
+         })
         }
 
       }
