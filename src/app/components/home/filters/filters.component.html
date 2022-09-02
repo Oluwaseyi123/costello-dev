@@ -28,7 +28,7 @@
 
  <div class="table-wrap">
   <table mat-table [dataSource]="trials" matSort>
-   <ng-container matColumnDef="Rank">
+   <ng-container matColumnDef="rank">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
     <td mat-cell *matCellDef="let position"> {{position.Rank}} </td>
    </ng-container>
@@ -36,11 +36,11 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> NCT ID </th>
     <td mat-cell *matCellDef="let position"> {{position.NCTId}} </td>
    </ng-container>
-   <ng-container matColumnDef="BriefTitlle">
+   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
     <td mat-cell *matCellDef="let position"> {{position.BriefTitle}} </td>
    </ng-container>
-   <ng-container matColumnDef="Condition">
+   <ng-container matColumnDef="condition">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Condition </th>
     <td mat-cell *matCellDef="let position"> {{position.Condition}} </td>
    </ng-container>

@@ -11,7 +11,7 @@ export class FiltersComponent implements OnInit {
   numTrials = 0;
   trials
   dataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Rank', 'BriefTitlle', 'Condition', 'NCTId', 'status', 'PCD'];
+  displayedColumns: string[] = ['rank', 'title', 'condition', 'NCTId', 'status', 'PCD'];
 
   constructor(
     private ctgovService: CtgovApiService

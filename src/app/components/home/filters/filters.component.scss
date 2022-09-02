@@ -2,6 +2,28 @@ table {
  width: 100%;
 }
 
+.mat-column-rank {
+ // width: 32px;
+ padding-right: 20px;
+ text-align: center;
+ font-size: 14px;
+}
+
+.mat-column-title {
+ padding-right: 20px;
+ font-size: 14px;
+ // font-size: 20px;
+}
+
+.mat-column-condition {
+ font-size: 14px;
+ padding-right: 20px;
+}
+
+.mat-column-status, .mat-column-NCTId {
+ font-size: 14px;
+ padding-right: 20px;
+}
 .search-parameters-container{
  width: 100%;
  display: flex;
