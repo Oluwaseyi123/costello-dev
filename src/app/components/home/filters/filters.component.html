@@ -1,24 +1,38 @@
 <div class="search-parameters-container">
  <div class="condition group">
-  <input type="text" placeholder="Condition">
+  <mat-form-field appearance="fill">
+   <mat-label>Condition</mat-label>
+   <input matInput placeholder="Condition">
+ </mat-form-field>
  </div>
+
  <div class="status group">
-  <select name="status" id="status">
-   <option value="Status" default>Status</option>
-   <option value="Status" default>Status</option>
-   <option value="Status" default>Primary Completion Date Between</option>
-   <option value="Status" default>Status</option>
-   <option value="Status" default>Status</option>
-  </select>
+  <mat-form-field appearance="fill">
+   <mat-label>Status</mat-label>
+   <mat-select>
+     <mat-option *ngFor="let status of statuses" [value]="status">
+     {{status}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
  </div>
 
  <div class="PCD group">
-  <input type="date" name="pcd" id="primary-completion-date">
+  <mat-form-field appearance="fill">
+   <mat-label>Primary completion date between</mat-label>
+   <mat-date-range-input [rangePicker]="picker">
+     <input matStartDate placeholder="Start date">
+     <input matEndDate placeholder="End date">
+   </mat-date-range-input>
+   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-date-range-picker #picker></mat-date-range-picker>
+ </mat-form-field>
  </div>
 
  <div class="trials-found group">
   <button (click)="getTrialData()">Get Trials</button>
-  <p>Found {{numTrials}} trials!</p> 
+  <p>Found {{numTrials}} trials!</p>
  </div>
 
 </div>
@@ -55,18 +69,21 @@
     <td mat-cell *matCellDef="let position"> {{position.PrimaryCompletionDate}} </td>
    </ng-container>
 
+   
+
 
    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="clickable"></tr>
-   <!-- Row shown when there is no matching data. -->
-   <!-- <tr class="mat-row" *matNoDataRow>
-     <td class="mat-cell" colspan="4" *ngIf="isLoading">Loading data...</td>
-     <td class="mat-cell none-found" colspan="4" *ngIf="!isLoading && input.value">No data matching the filter "{{input.value}}"
-     </td>
-     <ng-container *ngIf="!isLoading && !input.value">
-       <td class="mat-cell none-found" colspan="4">No companies found.</td>
-     </ng-container>
-   </tr> -->
+
+
+   <!-- <mat-paginator 
+   [pageSizeOptions]="[5, 10, 20]" 
+   showFirstLastButtons aria-label="Select page of periodic elements">
+
+   </mat-paginator> -->
+
+
   </table>
+  
  </div>
 </div>

@@ -1,5 +1,6 @@
 table {
  width: 100%;
+
 }
 
 .mat-column-rank {
@@ -9,18 +10,7 @@ table {
  font-size: 14px;
 }
 
-.mat-column-title {
- padding-right: 20px;
- font-size: 14px;
- // font-size: 20px;
-}
-
-.mat-column-condition {
- font-size: 14px;
- padding-right: 20px;
-}
-
-.mat-column-status, .mat-column-NCTId {
+.mat-column-status, .mat-column-NCTId, .mat-column-condition, .mat-column-title {
  font-size: 14px;
  padding-right: 20px;
 }
@@ -29,6 +19,7 @@ table {
  display: flex;
  align-items: start;
  justify-content: center;
+ margin-bottom: 3em;
 .group{
  margin-right: 1em;
  button{
@@ -39,6 +30,9 @@ table {
   border: none;
   outline: none;
   cursor: pointer;
+ }
+ p{
+  text-align: center;
  }
 }
 }

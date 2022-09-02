@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CtgovApiService } from 'src/app/services/ctgov-api.service';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
+
+
 export class FiltersComponent implements OnInit {
   numTrials = 0;
   trials
-  dataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ['rank', 'title', 'condition', 'NCTId', 'status', 'PCD'];
+  displayedColumns: string[] = ['rank','NCTId', 'title', 'condition',  'status', 'PCD'];
+  statuses: string[] = []
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private ctgovService: CtgovApiService
@@ -20,8 +26,10 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
     this.ctgovService.loadTrialData();  
      this.getTrialData()
-     this.getStudyFields()
-      
+    this.getStudyFields()
+    
+   
+  
   }
 
   getTrialData() {
@@ -33,11 +41,22 @@ export class FiltersComponent implements OnInit {
 
   getStudyFields() {
     this.ctgovService.trials$.subscribe((trials) => {
-      console.log(trials)
+      
       this.trials = trials;
+      this,trials.map((trial) => {
+       //console.log(trial.OverallStatus)
+        trial.OverallStatus.map((status) => {
+          this.statuses.push(status)
+          this.statuses = [...new Set(this.statuses)];
+         
+        })
+      })
+      console.log(this.statuses)
     });
+
+    
   }
-
-  
-
 }
+
+
+
