@@ -25,7 +25,7 @@ export class CtgovApiService {
     primaryCompletionDateUntil?: string // Takes format 'YYYY/MM/DD'
   ): void {
     // API Documentation: https://www.clinicaltrials.gov/api/gui/ref/api_urls
-    const baseUrl = 'https://ClinicalTrials.gov/api/query/study_fields';
+    const baseUrl = 'https://ClinicalTrials.gov/api/query/study_fields?fmt=JSON';
 
     const queryExpression = this.generateAPIQueryString(
       status, condition, primaryCompletionDateFrom, primaryCompletionDateUntil
@@ -34,12 +34,23 @@ export class CtgovApiService {
     let params = new HttpParams()
     .set('expr', queryExpression)
     .set('fields', 'NCTId,Condition,BriefTitle,OverallStatus,PrimaryCompletionDate')
+    // console.log(this.http.get<CTGovResponse>(baseUrl).subscribe({
+    //   next(res) {
+    //     console.log('Current Position: ', res.StudyFieldsResponse.NStudiesReturned);
+    //     //this.numTrials.next(res.StudyFieldsResponse.NStudiesReturned);
+    //   },
+    //   error(msg) {
+    //     console.log('Error Getting Location: ', msg);
+    //   }
+    // })
+    // )
 
     this.http.get<CTGovResponse>(baseUrl, {params})
     .subscribe(trials => {
       this.numTrials.next(trials.StudyFieldsResponse.NStudiesReturned);
       this.trials.next(trials.StudyFieldsResponse.StudyFields);
-      console.log(trials.StudyFieldsResponse.NStudiesReturned + ' trials were loaded!');
+      console.log(trials);
+      // console.log(trials.StudyFieldsResponse.NStudiesReturned + ' trials were loaded!');
     }, error => {
       console.error(error.error);
     });
