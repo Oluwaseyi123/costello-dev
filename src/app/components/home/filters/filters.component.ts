@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CtgovApiService } from 'src/app/services/ctgov-api.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-filters',
@@ -9,6 +10,8 @@ import { CtgovApiService } from 'src/app/services/ctgov-api.service';
 export class FiltersComponent implements OnInit {
   numTrials = 0;
   trials
+  dataSource = new MatTableDataSource([]);
+  displayedColumns: string[] = ['Rank', 'BriefTitlle', 'Condition', 'NCTId', 'status', 'PCD'];
 
   constructor(
     private ctgovService: CtgovApiService
@@ -18,6 +21,7 @@ export class FiltersComponent implements OnInit {
     this.ctgovService.loadTrialData();  
      this.getTrialData()
      this.getStudyFields()
+      
   }
 
   getTrialData() {

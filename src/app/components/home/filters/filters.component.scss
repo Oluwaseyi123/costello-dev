@@ -1,0 +1,22 @@
+table {
+ width: 100%;
+}
+
+.search-parameters-container{
+ width: 100%;
+ display: flex;
+ align-items: start;
+ justify-content: center;
+.group{
+ margin-right: 1em;
+ button{
+  background-color: green;
+  margin-bottom: 2em;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+ }
+}
+}
