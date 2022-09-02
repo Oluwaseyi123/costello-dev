@@ -66,7 +66,7 @@ export class FiltersComponent implements OnInit {
           this.trials = this.trials
         }
         else {
-         console.log(trials)
+         console.log(this.trials)
         }
 
       }
